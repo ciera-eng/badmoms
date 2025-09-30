@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badmoms Christmas 🎄 - Child Sponsorship</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f4c3a 0%, #1a6b54 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Snowflake Animation */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 1;
+            user-select: none;
+            cursor: default;
+            animation: fall linear infinite;
+            font-size: 20px;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f4c3a 0%, #1a6b54 50%, #0f4c3a 100%);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero::before {
+            content: '🎄';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            left: -50px;
+            animation: rotate 20s linear infinite;
+        }
+
+        .hero::after {
+            content: '🎁';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            bottom: -30px;
+            right: -30px;
+            animation: rotate 15s linear infinite reverse;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero h1 {
+            color: #fff;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero p {
+            color: #d4af37;
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Filter Section */
+        .filters {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-group h3 {
+            color: #0f4c3a;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-chip {
+            background: #f0f0f0;
+            border: 2px solid #e0e0e0;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .filter-chip:hover {
+            background: #e8f5e9;
+            border-color: #1a6b54;
+        }
+
+        .filter-chip.active {
+            background: #0f4c3a;
+            color: white;
+            border-color: #0f4c3a;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #0f4c3a;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* Children Grid */
+        .children-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .child-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .child-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #d4af37, #b91c1c, #0f4c3a);
+        }
+
+        .child-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .child-card.sponsored {
+            opacity: 0.7;
+            background: #f5f5f5;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .card-number {
+            background: #0f4c3a;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .status-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-badge.available {
+            background: #4caf50;
+            color: white;
+        }
+
+        .status-badge.sponsored {
+            background: #b91c1c;
+            color: white;
+        }
+
+        .sibling-badge {
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            color: #0f4c3a;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+        }
+
+        .child-name {
+            font-size: 1.5em;
+            color: #0f4c3a;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .child-info {
+            margin-bottom: 15px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-label {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        .wishlist-section {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .wishlist-title {
+            color: #0f4c3a;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .wishlist-content {
+            color: #555;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .sponsor-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .sponsor-btn:hover {
+            background: linear-gradient(135deg, #991b1b, #b91c1c);
+            transform: scale(1.02);
+        }
+
+        .sponsor-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #b91c1c;
+        }
+
+        .modal-header {
+            margin-bottom: 25px;
+        }
+
+        .modal-title {
+            color: #0f4c3a;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .modal-subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .sponsorship-options {
+            margin: 25px 0;
+        }
+
+        .option-card {
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-card:hover {
+            border-color: #0f4c3a;
+            background: #f9f9f9;
+        }
+
+        .option-card.selected {
+            border-color: #0f4c3a;
+            background: #e8f5e9;
+        }
+
+        .option-card input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .option-title {
+            font-weight: bold;
+            color: #0f4c3a;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .option-description {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .sibling-details {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .sibling-item {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .sibling-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .shopping-tip {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            color: #856404;
+        }
+
+        .shopping-tip strong {
+            color: #533f03;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            color: #0f4c3a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #0f4c3a;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #0f4c3a, #1a6b54);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #1a6b54, #0f4c3a);
+            transform: scale(1.02);
+        }
+
+        /* Loading Spinner */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #d4af37;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error Message */
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #c62828;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2e7d32;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .no-results-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .no-results h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .children-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 25px;
+            }
+
+            .stats-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .filter-chips {
+                justify-content: center;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0f4c3a;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1a6b54;
+        }
+    </style>
+</head>
+<body>
+    <!-- Snowflakes -->
+    <div id="snowflakes"></div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Badmoms Christmas 🎄</h1>
+        <p>Bring joy to children this holiday season. Sponsor a child and make their Christmas magical!</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading children data...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error" style="display: none;"></div>
+
+        <!-- Success Message -->
+        <div id="success" class="success-message"></div>
+
+        <!-- Stats Bar -->
+        <div id="stats" class="stats-bar" style="display: none;">
+            <div class="stat-item">
+                <div class="stat-number" id="totalChildren">0</div>
+                <div class="stat-label">Total Children</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="availableChildren">0</div>
+                <div class="stat-label">Available</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="sponsoredChildren">0</div>
+                <div class="stat-label">Sponsored</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="siblingSets">0</div>
+                <div class="stat-label">Sibling Sets</div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div id="filters" class="filters" style="display: none;">
+            <div class="filter-group">
+                <h3>🎂 Age Group</h3>
+                <div class="filter-chips" id="ageFilters">
+                    <div class="filter-chip" data-filter="age" data-value="all">All Ages</div>
+                    <div class="filter-chip" data-filter="age" data-value="0-2">0-2 years</div>
+                    <div class="filter-chip" data-filter="age" data-value="3-5">3-5 years</div>
+                    <div class="filter-chip" data-filter="age" data-value="6-8">6-8 years</div>
+                    <div class="filter-chip" data-filter="age" data-value="9-12">9-12 years</div>
+                    <div class="filter-chip" data-filter="age" data-value="13-17">13-17 years</div>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>👤 Gender</h3>
+                <div class="filter-chips" id="genderFilters">
+                    <div class="filter-chip" data-filter="gender" data-value="all">All</div>
+                    <div class="filter-chip" data-filter="gender" data-value="Male">Male</div>
+                    <div class="filter-chip" data-filter="gender" data-value="Female">Female</div>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>🎯 Special Filters</h3>
+                <div class="filter-chips" id="specialFilters">
+                    <div class="filter-chip" data-filter="special" data-value="siblings">Sibling Sets Only</div>
+                    <div class="filter-chip" data-filter="special" data-value="available">Available Only</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Children Grid -->
+        <div id="childrenGrid" class="children-grid"></div>
+
+        <!-- No Results -->
+        <div id="noResults" class="no-results" style="display: none;">
+            <div class="no-results-icon">🎅</div>
+            <h3>No children found</h3>
+            <p>Try adjusting your filters to see more results</p>
+        </div>
+    </div>
+
+    <!-- Sponsorship Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title">Sponsor a Child 🎁</h2>
+                <p class="modal-subtitle" id="modalSubtitle"></p>
+            </div>
+
+            <div id="sponsorshipOptions" class="sponsorship-options"></div>
+
+            <form id="sponsorForm">
+                <div class="form-group">
+                    <label class="form-label">Your Name *</label>
+                    <input type="text" class="form-input" id="sponsorName" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email Address *</label>
+                    <input type="email" class="form-input" id="sponsorEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Phone Number *</label>
+                    <input type="tel" class="form-input" id="sponsorPhone" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Complete Sponsorship 🎄</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const API_KEY = 'AIzaSyCuwVApxHXMUuGVJiBZf1De8vxR2P4E9VY';
+        const SHEETS_ID = '1kym8TukGMd6_ngS-3t7ypEgIUNq9ikMSUFNVLHNGqg8';
+        const RANGE = 'Sheet1!A:I';
+
+        // State
+        let allChildren = [];
+        let filteredChildren = [];
+        let currentFilters = {
+            age: 'all',
+            gender: 'all',
+            siblings: false,
+            available: false
+        };
+        let selectedChild = null;
+        let selectedSponsorshipType = 'individual';
+
+        // Initialize snowflakes
+        function createSnowflakes() {
+            const snowflakesContainer = document.getElementById('snowflakes');
+            const emojis = ['❄️', '⛄', '🎄', '🎅', '🎁', '⭐', '🔔'];
+            
+            for (let i = 0; i < 20; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+                snowflakesContainer.appendChild(snowflake);
+            }
+        }
+
+        // Fetch data from Google Sheets
+        async function fetchSheetData() {
+            try {
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEETS_ID}/values/${RANGE}?key=${API_KEY}`;
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data from Google Sheets');
+                }
+
+                const data = await response.json();
+                return data.values;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                throw error;
+            }
+        }
+
+        // Parse sheet data
+        function parseSheetData(rows) {
+            if (!rows || rows.length < 2) {
+                throw new Error('No data found in the sheet');
+            }
+
+            const headers = rows[0];
+            const children = [];
+
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                if (!row[0]) continue; // Skip empty rows
+
+                const child = {
+                    rowNumber: i + 1,
+                    name: row[0] || 'N/A',
+                    age: row[1] || 'N/A',
+                    gender: row[2] || 'N/A',
+                    clothingSize: row[3] || 'N/A',
+                    shoeSize: row[4] || 'N/A',
+                    wishlist: row[5] || 'N/A',
+                    clothingNeeds: row[6] || 'N/A',
+                    householdNeeds: row[7] || 'N/A',
+                    familyId: row[8] || null,
+                    sponsored: false,
+                    sponsorName: '',
+                    sponsorEmail: '',
+                    sponsorPhone: '',
+                    sponsorshipType: ''
+                };
+
+                children.push(child);
+            }
+
+            return children;
+        }
+
+        // Load sponsorships from local storage
+        function loadSponsorships() {
+            const sponsorships = JSON.parse(localStorage.getItem('sponsorships') || '{}');
+            
+            allChildren.forEach(child => {
+                const key = `row_${child.rowNumber}`;
+                if (sponsorships[key]) {
+                    child.sponsored = true;
+                    child.sponsorName = sponsorships[key].sponsorName;
+                    child.sponsorEmail = sponsorships[key].sponsorEmail;
+                    child.sponsorPhone = sponsorships[key].sponsorPhone;
+                    child.sponsorshipType = sponsorships[key].sponsorshipType;
+                }
+            });
+        }
+
+        // Calculate sibling counts
+        function calculateSiblings() {
+            const familyGroups = {};
+            
+            allChildren.forEach(child => {
+                if (child.familyId && child.familyId.trim() !== '') {
+                    if (!familyGroups[child.familyId]) {
+                        familyGroups[child.familyId] = [];
+                    }
+                    familyGroups[child.familyId].push(child);
+                }
+            });
+
+            allChildren.forEach(child => {
+                if (child.familyId && familyGroups[child.familyId]) {
+                    child.siblings = familyGroups[child.familyId].filter(c => c.rowNumber !== child.rowNumber);
+                    child.siblingCount = familyGroups[child.familyId].length;
+                } else {
+                    child.siblings = [];
+                    child.siblingCount = 0;
+                }
+            });
+
+            return Object.keys(familyGroups).length;
+        }
+
+        // Update statistics
+        function updateStats() {
+            const total = allChildren.length;
+            const sponsored = allChildren.filter(c => c.sponsored).length;
+            const available = total - sponsored;
+            const siblingSets = calculateSiblings();
+
+            document.getElementById('totalChildren').textContent = total;
+            document.getElementById('availableChildren').textContent = available;
+            document.getElementById('sponsoredChildren').textContent = sponsored;
+            document.getElementById('siblingSets').textContent = siblingSets;
+        }
+
+        // Apply filters
+        function applyFilters() {
+            filteredChildren = allChildren.filter(child => {
+                // Age filter
+                if (currentFilters.age !== 'all') {
+                    const age = parseInt(child.age);
+                    const [min, max] = currentFilters.age.split('-').map(Number);
+                    if (isNaN(age) || age < min || age > max) return false;
+                }
+
+                // Gender filter
+                if (currentFilters.gender !== 'all') {
+                    if (child.gender.toLowerCase() !== currentFilters.gender.toLowerCase()) return false;
+                }
+
+                // Sibling filter
+                if (currentFilters.siblings) {
+                    if (child.siblingCount === 0) return false;
+                }
+
+                // Available filter
+                if (currentFilters.available) {
+                    if (child.sponsored) return false;
+                }
+
+                return true;
+            });
+
+            renderChildren();
+        }
+
+        // Create child card
+        function createChildCard(child) {
+            const card = document.createElement('div');
+            card.className = `child-card ${child.sponsored ? 'sponsored' : ''}`;
+
+            let siblingBadge = '';
+            if (child.siblingCount > 0) {
+                siblingBadge = `<div class="sibling-badge">👨‍👩‍👧‍👦 SIBLING SET (${child.siblingCount} children)</div>`;
+            }
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="card-number">#${child.rowNumber}</div>
+                    <div class="status-badge ${child.sponsored ? 'sponsored' : 'available'}">
+                        ${child.sponsored ? 'Sponsored' : 'Available'}
+                    </div>
+                </div>
+                ${siblingBadge}
+                <div class="child-name">${child.name}</div>
+                <div class="child-info">
+                    <div class="info-row">
+                        <span class="info-label">Age:</span>
+                        <span class="info-value">${child.age} years</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Gender:</span>
+                        <span class="info-value">${child.gender}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Clothing Size:</span>
+                        <span class="info-value">${child.clothingSize}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Shoe Size:</span>
+                        <span class="info-value">${child.shoeSize}</span>
+                    </div>
+                </div>
+                <div class="wishlist-section">
+                    <div class="wishlist-title">🎁 Wishlist</div>
+                    <div class="wishlist-content">${child.wishlist}</div>
+                </div>
+                <div class="wishlist-section">
+                    <div class="wishlist-title">👕 Clothing Needs</div>
+                    <div class="wishlist-content">${child.clothingNeeds}</div>
+                </div>
+                <div class="wishlist-section">
+                    <div class="wishlist-title">🏠 Household Needs</div>
+                    <div class="wishlist-content">${child.householdNeeds}</div>
+                </div>
+                <button class="sponsor-btn" onclick="openSponsorModal(${child.rowNumber})" ${child.sponsored ? 'disabled' : ''}>
+                    ${child.sponsored ? 'Already Sponsored' : 'Sponsor This Child'}
+                </button>
+            `;
+
+            return card;
+        }
+
+        // Render children
+        function renderChildren() {
+            const grid = document.getElementById('childrenGrid');
+            const noResults = document.getElementById('noResults');
+
+            grid.innerHTML = '';
+
+            if (filteredChildren.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+            } else {
+                grid.style.display = 'grid';
+                noResults.style.display = 'none';
+
+                filteredChildren.forEach(child => {
+                    grid.appendChild(createChildCard(child));
+                });
+            }
+        }
+
+        // Open sponsor modal
+        function openSponsorModal(rowNumber) {
+            selectedChild = allChildren.find(c => c.rowNumber === rowNumber);
+            if (!selectedChild) return;
+
+            const modal = document.getElementById('modal');
+            const subtitle = document.getElementById('modalSubtitle');
+            const optionsContainer = document.getElementById('sponsorshipOptions');
+
+            subtitle.textContent = `Sponsoring: ${selectedChild.name}`;
+
+            let optionsHTML = '';
+
+            // Individual option
+            optionsHTML += `
+                <div class="option-card selected" onclick="selectSponsorshipType('individual')">
+                    <input type="radio" name="sponsorshipType" value="individual" checked>
+                    <div class="option-title">Individual Child</div>
+                    <div class="option-description">Sponsor ${selectedChild.name} only</div>
+                </div>
+            `;
+
+            // Sibling set option
+            if (selectedChild.siblingCount > 0) {
+                const allSiblings = [selectedChild, ...selectedChild.siblings];
+                
+                optionsHTML += `
+                    <div class="option-card" onclick="selectSponsorshipType('sibling')">
+                        <input type="radio" name="sponsorshipType" value="sibling">
+                        <div class="option-title">Complete Sibling Set</div>
+                        <div class="option-description">Sponsor all ${selectedChild.siblingCount} siblings together</div>
+                    </div>
+                    <div class="sibling-details" id="siblingDetails" style="display: none;">
+                        <h4 style="color: #0f4c3a; margin-bottom: 15px;">Siblings in this set:</h4>
+                        ${allSiblings.map(sib => `
+                            <div class="sibling-item">
+                                <strong>${sib.name}</strong> - ${sib.age} years, ${sib.gender}<br>
+                                <small>Clothing: ${sib.clothingSize} | Shoes: ${sib.shoeSize}</small><br>
+                                <small>Wishes: ${sib.wishlist}</small>
+                            </div>
+                        `).join('')}
+                        <div class="shopping-tip">
+                            <strong>💡 Shopping Tip:</strong> Screenshot these sibling details for easy reference while shopping!
+                        </div>
+                    </div>
+                `;
+            }
+
+            optionsContainer.innerHTML = optionsHTML;
+            selectedSponsorshipType = 'individual';
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Select sponsorship type
+        function selectSponsorshipType(type) {
+            selectedSponsorshipType = type;
+            
+            // Update radio buttons
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            const radio = event.currentTarget.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
+
+            // Show/hide sibling details
+            const siblingDetails = document.getElementById('siblingDetails');
+            if (siblingDetails) {
+                siblingDetails.style.display = type === 'sibling' ? 'block' : 'none';
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.getElementById('sponsorForm').reset();
+        }
+
+        // Update Google Sheets with sponsorship information
+        async function updateGoogleSheet(rowNumber, sponsorName, sponsorEmail, sponsorPhone, sponsorshipType) {
+            try {
+                const range = `Sheet1!J${rowNumber}:N${rowNumber}`;
+                const values = [[
+                    'Sponsored',  // Status
+                    sponsorName,
+                    sponsorEmail,
+                    sponsorPhone,
+                    sponsorshipType
+                ]];
+
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEETS_ID}/values/${range}?valueInputOption=RAW&key=${API_KEY}`;
+                
+                const response = await fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ values })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to update Google Sheet');
+                }
+
+                return true;
+            } catch (error) {
+                console.error('Error updating Google Sheet:', error);
+                return false;
+            }
+        }
+
+        // Handle form submission
+        async function handleSponsorSubmit(event) {
+            event.preventDefault();
+
+            const sponsorName = document.getElementById('sponsorName').value;
+            const sponsorEmail = document.getElementById('sponsorEmail').value;
+            const sponsorPhone = document.getElementById('sponsorPhone').value;
+
+            const childrenToSponsor = selectedSponsorshipType === 'sibling' 
+                ? [selectedChild, ...selectedChild.siblings]
+                : [selectedChild];
+
+            // Update Google Sheets for each child
+            const updatePromises = childrenToSponsor.map(child => 
+                updateGoogleSheet(child.rowNumber, sponsorName, sponsorEmail, sponsorPhone, 
+                    selectedSponsorshipType === 'sibling' ? 'Sibling Set' : 'Individual')
+            );
+
+            try {
+                await Promise.all(updatePromises);
+
+                // Save to local storage
+                const sponsorships = JSON.parse(localStorage.getItem('sponsorships') || '{}');
+                
+                childrenToSponsor.forEach(child => {
+                    const key = `row_${child.rowNumber}`;
+                    sponsorships[key] = {
+                        sponsorName,
+                        sponsorEmail,
+                        sponsorPhone,
+                        sponsorshipType: selectedSponsorshipType === 'sibling' ? 'Sibling Set' : 'Individual'
+                    };
+
+                    // Update in memory
+                    const childInArray = allChildren.find(c => c.rowNumber === child.rowNumber);
+                    if (childInArray) {
+                        childInArray.sponsored = true;
+                        childInArray.sponsorName = sponsorName;
+                        childInArray.sponsorEmail = sponsorEmail;
+                        childInArray.sponsorPhone = sponsorPhone;
+                        childInArray.sponsorshipType = selectedSponsorshipType === 'sibling' ? 'Sibling Set' : 'Individual';
+                    }
+                });
+
+                localStorage.setItem('sponsorships', JSON.stringify(sponsorships));
+
+                // Show success message
+                const successMsg = document.getElementById('success');
+                const childNames = childrenToSponsor.map(c => c.name).join(', ');
+                successMsg.innerHTML = `
+                    <strong>🎉 Thank you for your generosity!</strong><br>
+                    You have successfully sponsored: ${childNames}<br>
+                    We will contact you at ${sponsorEmail} with next steps.
+                `;
+                successMsg.classList.add('show');
+
+                setTimeout(() => {
+                    successMsg.classList.remove('show');
+                }, 8000);
+
+                // Update display
+                updateStats();
+                applyFilters();
+                closeModal();
+
+            } catch (error) {
+                alert('There was an error processing your sponsorship. Please try again or contact support.');
+                console.error('Sponsorship error:', error);
+            }
+        }
+
+        // Setup filter listeners
+        function setupFilters() {
+            // Age filters
+            document.querySelectorAll('[data-filter="age"]').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    document.querySelectorAll('[data-filter="age"]').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilters.age = this.dataset.value;
+                    applyFilters();
+                });
+            });
+
+            // Gender filters
+            document.querySelectorAll('[data-filter="gender"]').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    document.querySelectorAll('[data-filter="gender"]').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilters.gender = this.dataset.value;
+                    applyFilters();
+                });
+            });
+
+            // Special filters
+            document.querySelectorAll('[data-filter="special"]').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const value = this.dataset.value;
+                    if (value === 'siblings') {
+                        currentFilters.siblings = this.classList.contains('active');
+                    } else if (value === 'available') {
+                        currentFilters.available = this.classList.contains('active');
+                    }
+                    applyFilters();
+                });
+            });
+
+            // Set default active filters
+            document.querySelector('[data-filter="age"][data-value="all"]').classList.add('active');
+            document.querySelector('[data-filter="gender"][data-value="all"]').classList.add('active');
+        }
+
+        // Initialize app
+        async function init() {
+            try {
+                createSnowflakes();
+
+                const rows = await fetchSheetData();
+                allChildren = parseSheetData(rows);
+                loadSponsorships();
+                calculateSiblings();
+                
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('stats').style.display = 'flex';
+                document.getElementById('filters').style.display = 'block';
+
+                updateStats();
+                setupFilters();
+                applyFilters();
+
+                // Setup modal listeners
+                document.getElementById('closeModal').addEventListener('click', closeModal);
+                document.getElementById('modal').addEventListener('click', function(e) {
+                    if (e.target === this) closeModal();
+                });
+                document.getElementById('sponsorForm').addEventListener('submit', handleSponsorSubmit);
+
+            } catch (error) {
+                document.getElementById('loading').style.display = 'none';
+                const errorDiv = document.getElementById('error');
+                errorDiv.className = 'error-message';
+                errorDiv.innerHTML = `
+                    <strong>Error Loading Data</strong><br>
+                    ${error.message}<br>
+                    Please refresh the page or contact support.
+                `;
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        // Start the app
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
